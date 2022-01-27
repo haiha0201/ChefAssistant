@@ -1,13 +1,14 @@
 package com.HaiHa.ChefAssistant;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.HaiHa.ChefAssistant.models.Food;
+import com.HaiHa.ChefAssistant.models.FoodAdapter;
 import com.unity3d.player.R;
 
 import java.util.ArrayList;

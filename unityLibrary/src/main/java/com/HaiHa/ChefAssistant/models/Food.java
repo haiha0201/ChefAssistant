@@ -1,4 +1,4 @@
-package com.HaiHa.ChefAssistant;
+package com.HaiHa.ChefAssistant.models;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

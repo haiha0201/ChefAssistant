@@ -1,9 +1,7 @@
-package com.HaiHa.ChefAssistant;
+package com.HaiHa.ChefAssistant.models;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,15 +22,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import android.os.Handler;
 
-import javax.annotation.Nonnull;
-
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     private Context context;
     private ArrayList<Food> foods;
-    public FoodAdapter(Context _context, ArrayList<Food> _foods)
+    public FoodAdapter(Context _context, ArrayList<Food> listFood)
     {
         context = _context;
-        foods = _foods;
+        foods = listFood;
+    }
+    public void SetFoods(ArrayList<Food> newFoods)
+    {
+        foods = newFoods;
+        notifyDataSetChanged();
     }
     @NonNull
     @Override

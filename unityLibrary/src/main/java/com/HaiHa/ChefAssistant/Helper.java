@@ -3,6 +3,7 @@ package com.HaiHa.ChefAssistant;
 import android.content.Context;
 import android.util.Log;
 
+import com.HaiHa.ChefAssistant.models.Food;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
