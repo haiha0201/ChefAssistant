@@ -1,4 +1,4 @@
-package com.HaiHa.ChefAssistant.models;
+package com.HaiHa.ChefAssistant.models.Food;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

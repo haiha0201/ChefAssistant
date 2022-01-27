@@ -38,7 +38,7 @@
             android:name="com.HaiHa.ChefAssistant.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
         <activity
             android:name="com.HaiHa.ChefAssistant.TestActivity"
             android:exported="false"

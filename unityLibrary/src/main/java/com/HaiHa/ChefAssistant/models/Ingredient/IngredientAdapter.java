@@ -1,4 +1,4 @@
-package com.HaiHa.ChefAssistant.models;
+package com.HaiHa.ChefAssistant.models.Ingredient;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.HaiHa.ChefAssistant.models.Ingredient.Ingredient;
 import com.unity3d.player.R;
 
 import java.io.IOException;
@@ -22,62 +23,49 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import android.os.Handler;
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
+public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<Food> foods;
-    public FoodAdapter(Context _context, ArrayList<Food> listFood)
+    private ArrayList<Ingredient> ingredients;
+    public IngredientAdapter(Context _context, ArrayList<Ingredient> listIngres)
     {
         context = _context;
-        foods = listFood;
+        ingredients = listIngres;
     }
-    public void SetFoods(ArrayList<Food> newFoods)
+    public void SetFoods(ArrayList<Ingredient> newIngres)
     {
-        foods = newFoods;
+        ingredients = newIngres;
         notifyDataSetChanged();
     }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View foodView;
-        if (viewType == 0)
-        {
-            foodView = inflater.inflate(R.layout.food_thumbnail, parent, false);
-        }
-        else
-        {
-            foodView = inflater.inflate(R.layout.food_thumbnail2, parent, false);
-        }
+        View foodView = inflater.inflate(R.layout.ingredient_layout, parent, false);
         ViewHolder viewHolder = new ViewHolder(foodView);
         return viewHolder;
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return position%2;
-    }
-
-    @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Food food = foods.get(position);
+        Ingredient ingre = ingredients.get(position);
         try {
-            SetImage(holder.imageView, food);
+            SetImage(holder.imageView, ingre);
         }
         catch (java.io.IOException e)
         {
             Log.e("ERROR", e.toString());
         }
-        holder.name.setText(food.mealName);
-        holder.country.setText(food.mealArea);
+        holder.name.setText(ingre.name);
+        holder.measurement.setText(ingre.measurement);
     }
 
     @Override
     public int getItemCount() {
-        return foods.size();
+        return ingredients.size();
     }
 
-    public void SetImage(ImageView imageView, Food food) throws IOException {
-        if (food.mealThumbBitmap == null)
+    public void SetImage(ImageView imageView, Ingredient ingredient) throws IOException {
+        if (ingredient.mealThumbBMP == null)
         {
             ExecutorService executor = Executors.newSingleThreadExecutor();
             Handler handler = new Handler(Looper.getMainLooper());
@@ -86,12 +74,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                 @Override
                 public void run() {
                     try {
-                        URL url = new URL(food.mealThumb);
-                        food.mealThumbBitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                        URL url = new URL(ingredient.mealThumb);
+                        ingredient.mealThumbBMP = BitmapFactory.decodeStream(url.openConnection().getInputStream());
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                imageView.setImageBitmap(food.mealThumbBitmap);
+                                imageView.setImageBitmap(ingredient.mealThumbBMP);
                             }
                         });
                     }
@@ -103,7 +91,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             });
         }
         else{
-            imageView.setImageBitmap(food.mealThumbBitmap);
+            imageView.setImageBitmap(ingredient.mealThumbBMP);
         }
     }
 
@@ -111,12 +99,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     {
         public ImageView imageView;
         public TextView name;
-        public TextView country;
+        public TextView measurement;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
-            country = itemView.findViewById(R.id.country);
+            measurement = itemView.findViewById(R.id.measurement);
         }
     }
 

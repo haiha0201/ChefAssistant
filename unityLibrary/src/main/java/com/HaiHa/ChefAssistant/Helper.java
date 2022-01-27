@@ -3,7 +3,8 @@ package com.HaiHa.ChefAssistant;
 import android.content.Context;
 import android.util.Log;
 
-import com.HaiHa.ChefAssistant.models.Food;
+import com.HaiHa.ChefAssistant.models.Food.Food;
+import com.HaiHa.ChefAssistant.models.Ingredient.Ingredient;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -79,4 +80,38 @@ public class Helper {
         });
         queue.add(stringRequest);
     }
+
+//    public static void GrabIngredientImages(Context context, Food food, VolleyCallBack callback)
+//    {
+//        for (int i = 0 ; i < Food.capacity; i++)
+//        {
+//            RequestQueue queue = Volley.newRequestQueue(context);
+//            Ingredient ingredient = food.ingredientList.get(i);
+//            String url = ingredient.mealThumb;
+//
+//            // Request a string response from the provided URL.
+//            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//                    new Response.Listener<String>() {
+//                        @Override
+//                        public void onResponse(String response) {
+//                            try
+//                            {
+//                                JSONObject json = new JSONObject(response);
+//                                JSONObject meal = json.getJSONArray("meals").getJSONObject(0);
+//                                callback.onSuccess(new Food(meal));
+//                            }
+//                            catch (Exception e)
+//                            {
+//                                callback.onFailure(e);
+//                            }
+//                        }
+//                    }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    Log.e("ERROR", error.toString());
+//                }
+//            });
+//            queue.add(stringRequest);
+//        }
+//    }
 }
