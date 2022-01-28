@@ -25,6 +25,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.unity3d.player.R;
 
 public class DetailActivity extends AppCompatActivity {
@@ -85,11 +86,23 @@ public class DetailActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mbase.collection("Favorites").add(new Reference(mAuth.getUid(), foodViewModel.getSelectedItem().getValue().id))
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                //Check whether it already existed
+                String mealID = foodViewModel.getSelectedItem().getValue().id;
+                mbase.collection("Favorites")
+                        .whereEqualTo("userID", mAuth.getUid().toString())
+                        .whereEqualTo("mealID", mealID)
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(getApplicationContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                if (!queryDocumentSnapshots.isEmpty())
+                                {
+                                    Toast.makeText(getApplicationContext(), "Already in your favorite meals", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    Add();
+                                }
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -98,7 +111,24 @@ public class DetailActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Failed to add to favorites", Toast.LENGTH_SHORT).show();
                             }
                         });
-            }
+    }
+    public void Add()
+    {
+        String mealID = foodViewModel.getSelectedItem().getValue().id;
+        mbase.collection("Favorites").add(new Reference(mAuth.getUid(), mealID))
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(getApplicationContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Failed to add to favorites", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
         });
     }
     void BindData()
@@ -106,7 +136,7 @@ public class DetailActivity extends AppCompatActivity {
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
         Log.d("Detailed activity", "Looking for food");
         String id = (String) getIntent().getSerializableExtra("id");
-        Helper.GetFoodById(getApplicationContext(), id, new Helper.GetFoodCallBack()
+        Helper.GetFoodById(getApplicationContext(), id, true, new Helper.GetFoodCallBack()
         {
             @Override
             public void onFailure(Exception e) {

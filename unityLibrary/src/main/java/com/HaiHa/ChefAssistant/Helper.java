@@ -79,7 +79,7 @@ public class Helper {
         });
         queue.add(stringRequest);
     }
-    public static void GetFoodById(Context context, String id, GetFoodCallBack callback)
+    public static void GetFoodById(Context context, String id, boolean fullInfo, GetFoodCallBack callback)
     {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -94,7 +94,7 @@ public class Helper {
                         {
                             JSONObject json = new JSONObject(response);
                             JSONObject meal = json.getJSONArray("meals").getJSONObject(0);
-                            callback.onSuccess(new Food(meal, true));
+                            callback.onSuccess(new Food(meal, fullInfo));
                         }
                         catch (Exception e)
                         {
