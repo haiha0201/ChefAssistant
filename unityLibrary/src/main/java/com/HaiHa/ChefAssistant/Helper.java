@@ -30,6 +30,7 @@ public class Helper {
     }
     static String randomURL = "https://www.themealdb.com/api/json/v1/1/random.php";
     static String searchURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+    static String searchByID = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
     public static void GetRandomFood(Context context, VolleyCallBack callback)
     {
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -59,6 +60,37 @@ public class Helper {
         });
         queue.add(stringRequest);
     }
+    public static void GetFoodById(Context context, String id, VolleyCallBack callback)
+    {
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = searchByID + id;
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try
+                        {
+                            JSONObject json = new JSONObject(response);
+                            JSONObject meal = json.getJSONArray("meals").getJSONObject(0);
+                            callback.onSuccess(new Food(meal));
+                        }
+                        catch (Exception e)
+                        {
+                            callback.onFailure(e);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("ERROR", error.toString());
+            }
+        });
+        queue.add(stringRequest);
+    }
+
     public static void GetFood(Context context, String name, VolleyCallBack callback)
     {
         // Instantiate the RequestQueue.

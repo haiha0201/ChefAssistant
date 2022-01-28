@@ -100,11 +100,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             imageView = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
             country = itemView.findViewById(R.id.country);
-            onItemListener=onItemListener;
+            this.onItemListener=onItemListener;
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
+            Toast.makeText(context, "I got clicked", Toast.LENGTH_SHORT);
             onItemListener.onItemClick(getAdapterPosition());
         }
     }

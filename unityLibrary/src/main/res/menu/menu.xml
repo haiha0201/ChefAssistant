@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_bar"
+        android:title="search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction ="ifRoom|collapseActionView"/>
+
+    <item
+        android:id="@+id/menuType"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Share"
+        app:showAsAction="ifRoom|collapseActionView">
+        <menu>
+            <item
+                android:id="@+id/menuType_Name"
+                android:title="Name" />
+            <item
+                android:id="@+id/menuType_Area"
+                android:title="Area" />
+            <item
+                android:id="@+id/menuType_Ingredient"
+                android:title="Ingredient" />
+        </menu>
+    </item>
+
+
+
+
+
+</menu>

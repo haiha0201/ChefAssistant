@@ -71,22 +71,21 @@ public class DetailActivity extends AppCompatActivity {
     }
     void TestGetFood()
     {
-        foodViewModel.setFood((Food)getIntent().getSerializableExtra("food"));
+        String id = (String) getIntent().getSerializableExtra("id");
+        Helper.GetFoodById(getApplicationContext(), id, new Helper.VolleyCallBack()
+        {
+            @Override
+            public void onFailure(Exception e) {
+                Toast.makeText( getApplicationContext(),
+                        e.toString(),
+                        Toast.LENGTH_LONG).show();
+            }
 
-//        Helper.GetRandomFood(getApplicationContext(), new Helper.VolleyCallBack()
-//        {
-//            @Override
-//            public void onFailure(Exception e) {
-//                Toast.makeText( getApplicationContext(),
-//                        e.toString(),
-//                        Toast.LENGTH_LONG).show();
-//            }
-//
-//            @Override
-//            public void onSuccess(Food food) {
-//                foodViewModel.setFood(food);
-//                Log.d("Main Fragment", "i got called: " + foodViewModel.getSelectedItem().getValue().mealName.toString());
-//            }
-//        });
+            @Override
+            public void onSuccess(Food food) {
+                foodViewModel.setFood(food);
+                Log.d("Main Fragment", "i got called: " + foodViewModel.getSelectedItem().getValue().mealName.toString());
+            }
+        });
     }
 }
