@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 public class FoodViewModel extends ViewModel {
     private final MutableLiveData<Food> selectedItem = new MutableLiveData<Food>();
-    public void selectItem(Food item) {
+    public void setFood(Food item) {
         selectedItem.setValue(item);
     }
     public LiveData<Food> getSelectedItem() {

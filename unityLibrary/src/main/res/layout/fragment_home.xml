@@ -8,6 +8,7 @@
     android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:clickable="true"
         android:id="@+id/rview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

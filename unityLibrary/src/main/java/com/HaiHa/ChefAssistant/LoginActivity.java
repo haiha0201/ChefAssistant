@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.w("SIGN IN", "User is null, not navigating!");
             return;
         }
+//        startActivity(new Intent(this, MainActivity.class));
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }

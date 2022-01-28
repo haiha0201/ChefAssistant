@@ -44,7 +44,14 @@ public class TestActivity extends AppCompatActivity {
         }
 
 
-        foodAdapter = new FoodAdapter(getApplicationContext(), foods);
+        foodAdapter = new FoodAdapter(getApplicationContext(), foods, new FoodAdapter.OnItemListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText( getApplicationContext(),
+                        "Working",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
         recyclerView.setAdapter(foodAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

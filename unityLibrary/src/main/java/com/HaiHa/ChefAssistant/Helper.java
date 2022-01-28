@@ -1,7 +1,11 @@
 package com.HaiHa.ChefAssistant;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.HaiHa.ChefAssistant.models.Food.Food;
 import com.HaiHa.ChefAssistant.models.Ingredient.Ingredient;
@@ -13,6 +17,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Helper {
     public interface VolleyCallBack {
@@ -79,6 +88,36 @@ public class Helper {
             }
         });
         queue.add(stringRequest);
+    }
+    static public void SetImage(ImageView imageView, Food food) throws IOException {
+        if (food.mealThumbBitmap == null)
+        {
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            Handler handler = new Handler(Looper.getMainLooper());
+
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        URL url = new URL(food.mealThumb);
+                        food.mealThumbBitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setImageBitmap(food.mealThumbBitmap);
+                            }
+                        });
+                    }
+                    catch (java.io.IOException e)
+                    {
+                        Log.e("ERROR", e.toString());
+                    }
+                }
+            });
+        }
+        else{
+            imageView.setImageBitmap(food.mealThumbBitmap);
+        }
     }
 
 //    public static void GrabIngredientImages(Context context, Food food, VolleyCallBack callback)

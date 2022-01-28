@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.HaiHa.ChefAssistant.ui.dashboard.MyRecipesFragment"
+        android:name="com.HaiHa.ChefAssistant.ui.personalRecipes.MyRecipesFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_my_recipes" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.HaiHa.ChefAssistant.ui.notifications.PersonalFragment"
+        android:name="com.HaiHa.ChefAssistant.ui.personalInformation.PersonalFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_personal" />
 </navigation>

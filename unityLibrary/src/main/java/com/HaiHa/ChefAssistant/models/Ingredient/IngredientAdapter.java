@@ -26,12 +26,12 @@ import android.os.Handler;
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ViewHolder> {
     private Context context;
     private ArrayList<Ingredient> ingredients;
-    public IngredientAdapter(Context _context, ArrayList<Ingredient> listIngres)
+    public IngredientAdapter(Context _context, ArrayList<Ingredient> initial)
     {
         context = _context;
-        ingredients = listIngres;
+        ingredients = initial;
     }
-    public void SetFoods(ArrayList<Ingredient> newIngres)
+    public void SetIngredients(ArrayList<Ingredient> newIngres)
     {
         ingredients = newIngres;
         notifyDataSetChanged();
@@ -65,6 +65,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
     }
 
     public void SetImage(ImageView imageView, Ingredient ingredient) throws IOException {
+        if (ingredient.mealThumb == null || ingredient.mealThumb == "") return;
         if (ingredient.mealThumbBMP == null)
         {
             ExecutorService executor = Executors.newSingleThreadExecutor();

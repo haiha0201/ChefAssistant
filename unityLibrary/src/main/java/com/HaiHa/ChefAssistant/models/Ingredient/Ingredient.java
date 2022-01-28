@@ -1,15 +1,16 @@
 package com.HaiHa.ChefAssistant.models.Ingredient;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Ingredient {
-    String name;
-    String measurement;
+    public String name;
+    public String measurement;
     public String mealThumb;
-    Bitmap mealThumbBMP;
+    public Bitmap mealThumbBMP;
 
     static String thumbFormat = "https://www.themealdb.com//images//ingredients//";
     static String nameFormat = "strIngredient";
@@ -21,5 +22,21 @@ public class Ingredient {
 
         mealThumb = thumbFormat + name + ".png";
         mealThumbBMP = null;
+    }
+    public static boolean isViable(JSONObject ingre, int index) throws  JSONException
+    {
+        String temp = ingre.getString(nameFormat + Integer.toString(index));
+        Log.d("ERROR", ingre.toString());
+        if (temp == null)
+        {
+            Log.d("FAULTY", "NULL");
+            return false;
+        }
+        if (temp.equals(""))
+        {
+            Log.d("FAULTY", "Empty");
+            return false;
+        }
+        return true;
     }
 }

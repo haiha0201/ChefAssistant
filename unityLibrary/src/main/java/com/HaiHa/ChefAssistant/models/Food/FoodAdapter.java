@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.HaiHa.ChefAssistant.Helper;
 import com.unity3d.player.R;
 
 import java.io.IOException;
@@ -21,19 +22,27 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import android.os.Handler;
+import android.widget.Toast;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     private Context context;
     private ArrayList<Food> foods;
-    public FoodAdapter(Context _context, ArrayList<Food> listFood)
+    private OnItemListener mOnItemListener;
+
+    public FoodAdapter(Context _context, ArrayList<Food> listFood, OnItemListener onItemListener)
     {
         context = _context;
         foods = listFood;
+        mOnItemListener=onItemListener;
     }
     public void SetFoods(ArrayList<Food> newFoods)
     {
         foods = newFoods;
         notifyDataSetChanged();
+    }
+    public Food GetAt(int i)
+    {
+        return foods.get(i);
     }
     @NonNull
     @Override
@@ -48,7 +57,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         {
             foodView = inflater.inflate(R.layout.food_thumbnail2, parent, false);
         }
-        ViewHolder viewHolder = new ViewHolder(foodView);
+        ViewHolder viewHolder = new ViewHolder(foodView, mOnItemListener);
         return viewHolder;
     }
 
@@ -61,7 +70,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Food food = foods.get(position);
         try {
-            SetImage(holder.imageView, food);
+            Helper.SetImage(holder.imageView, food);
         }
         catch (java.io.IOException e)
         {
@@ -69,6 +78,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         }
         holder.name.setText(food.mealName);
         holder.country.setText(food.mealArea);
+
     }
 
     @Override
@@ -76,47 +86,26 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         return foods.size();
     }
 
-    public void SetImage(ImageView imageView, Food food) throws IOException {
-        if (food.mealThumbBitmap == null)
-        {
-            ExecutorService executor = Executors.newSingleThreadExecutor();
-            Handler handler = new Handler(Looper.getMainLooper());
-
-            executor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        URL url = new URL(food.mealThumb);
-                        food.mealThumbBitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                imageView.setImageBitmap(food.mealThumbBitmap);
-                            }
-                        });
-                    }
-                    catch (java.io.IOException e)
-                    {
-                        Log.e("ERROR", e.toString());
-                    }
-                }
-            });
-        }
-        else{
-            imageView.setImageBitmap(food.mealThumbBitmap);
-        }
+    public interface OnItemListener{
+        void onItemClick(int position);
     }
-
-    public class ViewHolder extends RecyclerView.ViewHolder
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         public ImageView imageView;
         public TextView name;
         public TextView country;
-        public ViewHolder(@NonNull View itemView) {
+        OnItemListener onItemListener;
+        public ViewHolder(@NonNull View itemView, OnItemListener onItemListener) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
             country = itemView.findViewById(R.id.country);
+            onItemListener=onItemListener;
+        }
+
+        @Override
+        public void onClick(View view) {
+            onItemListener.onItemClick(getAdapterPosition());
         }
     }
 
