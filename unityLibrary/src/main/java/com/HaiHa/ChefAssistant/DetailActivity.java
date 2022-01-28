@@ -9,25 +9,43 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.HaiHa.ChefAssistant.models.Food.Food;
 import com.HaiHa.ChefAssistant.models.Food.FoodViewModel;
+import com.HaiHa.ChefAssistant.models.Reference.Reference;
 import com.HaiHa.ChefAssistant.ui.detailedRecipe.IngredientsFragment;
 import com.HaiHa.ChefAssistant.ui.detailedRecipe.InstructionFragment;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.unity3d.player.R;
 
 public class DetailActivity extends AppCompatActivity {
     private FoodViewModel foodViewModel;
+
+    private FirebaseFirestore mbase;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        InitDB();
         BindData();
         BindNav();
+    }
+    void InitDB()
+    {
+        mbase = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
     }
     void BindNav()
     {
@@ -62,15 +80,31 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
         bottomNavigationView.setSelectedItemId(R.id.navigation_ingredients);
+
+        FloatingActionButton button = (FloatingActionButton)  findViewById(R.id.fab);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mbase.collection("Favorites").add(new Reference(mAuth.getUid(), foodViewModel.getSelectedItem().getValue().id))
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Toast.makeText(getApplicationContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getApplicationContext(), "Failed to add to favorites", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
     }
     void BindData()
     {
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
         Log.d("Detailed activity", "Looking for food");
-        TestGetFood();
-    }
-    void TestGetFood()
-    {
         String id = (String) getIntent().getSerializableExtra("id");
         Helper.GetFoodById(getApplicationContext(), id, new Helper.GetFoodCallBack()
         {

@@ -39,14 +39,5 @@
             android:text="name"
             :gravity="center_vertical|left"
             android:textSize="40sp"/>
-
-        <TextView
-            android:id="@+id/country"
-            android:layout_width=   "match_parent"
-            android:layout_height=  "wrap_content"
-            android:text="country"
-            :gravity="center_vertical|left"
-            android:textSize="20sp"/>
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,6 +1,5 @@
 package com.HaiHa.ChefAssistant.ui.detailedRecipe;
 
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,11 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.HaiHa.ChefAssistant.Helper;
-import com.HaiHa.ChefAssistant.models.Food.FoodAdapter;
 import com.HaiHa.ChefAssistant.models.Food.FoodViewModel;
 import com.HaiHa.ChefAssistant.models.Ingredient.Ingredient;
 import com.HaiHa.ChefAssistant.models.Ingredient.IngredientAdapter;
-import com.HaiHa.ChefAssistant.ui.home.HomeViewModel;
 import com.unity3d.player.R;
 
 import java.util.ArrayList;
@@ -39,8 +36,11 @@ public class IngredientsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         foodViewModel = new ViewModelProvider(requireActivity()).get(FoodViewModel.class);
+
         recyclerView = view.findViewById(R.id.rview);
         ImageView imageView = view.findViewById(R.id.imageView);
+        TextView name = (TextView) view.findViewById(R.id.ingredientMealNameTextView);
+        TextView area = (TextView) view.findViewById(R.id.ingredientMealAreaTextView);
 
         ingredientAdapter = new IngredientAdapter(getContext(), new ArrayList<Ingredient>());
         foodViewModel.getSelectedItem().observe(requireActivity(), food -> {
@@ -49,8 +49,6 @@ public class IngredientsFragment extends Fragment {
                 ingredientAdapter.SetIngredients(food.ingredientList);
                 try {
                     Helper.SetImage(imageView, food);
-                    TextView name = (TextView) view.findViewById(R.id.ingredientMealNameTextView);
-                    TextView area = (TextView) view.findViewById(R.id.ingredientMealAreaTextView);
 
                     name.setText(food.mealName);
                     area.setText(food.mealArea);

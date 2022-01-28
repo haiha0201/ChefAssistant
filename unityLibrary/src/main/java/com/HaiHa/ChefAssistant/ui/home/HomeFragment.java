@@ -2,12 +2,10 @@ package com.HaiHa.ChefAssistant.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -24,14 +22,14 @@ import com.HaiHa.ChefAssistant.DetailActivity;
 import com.HaiHa.ChefAssistant.Helper;
 import com.HaiHa.ChefAssistant.models.Food.Food;
 import com.HaiHa.ChefAssistant.models.Food.FoodAdapter;
-import com.google.rpc.Help;
+import com.HaiHa.ChefAssistant.models.Food.HomeFragmentViewModel;
 import com.unity3d.player.R;
 
 import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment implements FoodAdapter.OnItemListener{
-    public HomeViewModel homeViewModel;
+    public HomeFragmentViewModel homeViewModel;
     private RecyclerView recyclerView;
     private FoodAdapter foodAdapter ;
 
@@ -48,7 +46,7 @@ public class HomeFragment extends Fragment implements FoodAdapter.OnItemListener
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        homeViewModel = new ViewModelProvider(requireActivity()).get(HomeFragmentViewModel.class);
         recyclerView = view.findViewById(R.id.rview);
 
         foodAdapter = new FoodAdapter(getContext(), homeViewModel.getSelectedItem().getValue(), this);

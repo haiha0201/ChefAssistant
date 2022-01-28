@@ -17,6 +17,10 @@ public class Ingredient {
     static String thumbFormat = "https://www.themealdb.com//images//ingredients//";
     static String nameFormat = "strIngredient";
     static String measurementFormat = "strMeasure";
+    public Ingredient()
+    {
+
+    }
     public Ingredient(JSONObject ingre, int index) throws JSONException
     {
         name = ingre.getString(nameFormat + Integer.toString(index));
@@ -27,16 +31,13 @@ public class Ingredient {
     }
     public static boolean isViable(JSONObject ingre, int index) throws  JSONException
     {
-        String temp = ingre.getString(nameFormat + Integer.toString(index));
-        Log.d("ERROR", ingre.toString());
-        if (temp == null)
+        if (ingre.isNull(nameFormat + Integer.toString(index)))
         {
-            Log.d("FAULTY", "NULL");
             return false;
         }
+        String temp = ingre.getString(nameFormat + Integer.toString(index));
         if (temp.equals(""))
         {
-            Log.d("FAULTY", "Empty");
             return false;
         }
         return true;

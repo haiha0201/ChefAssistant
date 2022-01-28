@@ -77,7 +77,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             Log.e("ERROR", e.toString());
         }
         holder.name.setText(food.mealName);
-        holder.country.setText(food.mealArea);
 
     }
 
@@ -93,13 +92,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     {
         public ImageView imageView;
         public TextView name;
-        public TextView country;
         OnItemListener onItemListener;
         public ViewHolder(@NonNull View itemView, OnItemListener onItemListener) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
-            country = itemView.findViewById(R.id.country);
             this.onItemListener=onItemListener;
             itemView.setOnClickListener(this);
         }

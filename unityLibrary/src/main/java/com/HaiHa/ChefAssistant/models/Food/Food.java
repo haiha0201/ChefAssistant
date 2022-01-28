@@ -30,16 +30,23 @@ public class Food {
     public Bitmap mealThumbBitmap;
     public ArrayList<Ingredient> ingredientList;
     public static int capacity = 20;
-    public Food(JSONObject meal) throws JSONException
+    public Food()
+    {
+
+    }
+    public Food(JSONObject meal, boolean fullForm) throws JSONException
     {
         id = meal.getString("idMeal");
         mealName = meal.getString("strMeal");
-        mealArea = meal.getString("strArea");
         mealThumb = meal.getString("strMealThumb");
-        mealInstruction = meal.getString("strInstructions");
-        ingredientList = new ArrayList<Ingredient>();
-        InitialIngredients(meal);
         mealThumbBitmap = null;
+        ingredientList = new ArrayList<Ingredient>();
+        if (fullForm)
+        {
+            mealArea = meal.getString("strArea");
+            mealInstruction = meal.getString("strInstructions");
+            InitialIngredients(meal);
+        }
     }
     void InitialIngredients(JSONObject meal) throws JSONException
     {

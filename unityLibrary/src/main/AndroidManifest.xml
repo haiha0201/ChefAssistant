@@ -44,10 +44,6 @@
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Material3.Light" />
         <activity
-            android:name="com.HaiHa.ChefAssistant.TestActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light" />
-        <activity
             android:name="com.HaiHa.ChefAssistant.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light">

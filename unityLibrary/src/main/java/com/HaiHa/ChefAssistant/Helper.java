@@ -64,7 +64,7 @@ public class Helper {
                         {
                             JSONObject json = new JSONObject(response);
                             JSONObject meal = json.getJSONArray("meals").getJSONObject(0);
-                            callback.onSuccess(new Food(meal));
+                            callback.onSuccess(new Food(meal, true));
                         }
                         catch (Exception e)
                         {
@@ -94,7 +94,7 @@ public class Helper {
                         {
                             JSONObject json = new JSONObject(response);
                             JSONObject meal = json.getJSONArray("meals").getJSONObject(0);
-                            callback.onSuccess(new Food(meal));
+                            callback.onSuccess(new Food(meal, true));
                         }
                         catch (Exception e)
                         {
@@ -124,7 +124,7 @@ public class Helper {
                     {
                         JSONObject json = new JSONObject(response);
                         JSONObject meal = json.getJSONArray("meals").getJSONObject(0);
-                        callback.onSuccess(new Food(meal));
+                        callback.onSuccess(new Food(meal, true));
                     }
                     catch (Exception e)
                     {
@@ -192,6 +192,7 @@ public class Helper {
             }
 
         }
+        Log.d("Sending", url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -203,7 +204,7 @@ public class Helper {
                             JSONArray meals = json.getJSONArray("meals");
                             for (int i = 0 ;i <meals.length(); i++)
                             {
-                                result.add(new Food(meals.getJSONObject(i)));
+                                result.add(new Food(meals.getJSONObject(i), false));
                             }
                             callback.onSuccess(result);
                         }

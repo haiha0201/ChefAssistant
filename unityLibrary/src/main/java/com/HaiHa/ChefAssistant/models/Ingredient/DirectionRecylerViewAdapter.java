@@ -11,16 +11,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.unity3d.player.R;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class DirectionRecylerViewAdapter extends
         RecyclerView.Adapter<DirectionRecylerViewAdapter.DirectionViewHolder>
 {
     Context ct;
-    String[] directions;
+    ArrayList<String> directions;
 
-    public DirectionRecylerViewAdapter(Context ct, String directions)
+    public DirectionRecylerViewAdapter(Context ct)
     {
-        this.directions = directions.split("\\. ");
         this.ct = ct;
+        this.directions = new ArrayList<String>();
+    }
+    public void SetDirections(String instruction)
+    {
+        this.directions = new ArrayList<String>(Arrays.asList(instruction.split("\\. ")));
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -34,12 +43,12 @@ public class DirectionRecylerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull DirectionViewHolder holder, int position) {
-        holder.directionTextView.setText(this.directions[position]);
+        holder.directionTextView.setText(this.directions.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return this.directions.length;
+        return this.directions.size();
     }
 
     public class DirectionViewHolder extends RecyclerView.ViewHolder
