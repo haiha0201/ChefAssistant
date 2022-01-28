@@ -72,7 +72,7 @@ public class DetailActivity extends AppCompatActivity {
     void TestGetFood()
     {
         String id = (String) getIntent().getSerializableExtra("id");
-        Helper.GetFoodById(getApplicationContext(), id, new Helper.VolleyCallBack()
+        Helper.GetFoodById(getApplicationContext(), id, new Helper.GetFoodCallBack()
         {
             @Override
             public void onFailure(Exception e) {

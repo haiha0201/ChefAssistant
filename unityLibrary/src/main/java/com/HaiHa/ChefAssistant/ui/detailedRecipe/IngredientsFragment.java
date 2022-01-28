@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.HaiHa.ChefAssistant.Helper;
@@ -48,6 +49,11 @@ public class IngredientsFragment extends Fragment {
                 ingredientAdapter.SetIngredients(food.ingredientList);
                 try {
                     Helper.SetImage(imageView, food);
+                    TextView name = (TextView) view.findViewById(R.id.ingredientMealNameTextView);
+                    TextView area = (TextView) view.findViewById(R.id.ingredientMealAreaTextView);
+
+                    name.setText(food.mealName);
+                    area.setText(food.mealArea);
                 }
                 catch (Exception e)
                 {
@@ -62,6 +68,6 @@ public class IngredientsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.test_layout, container, false);
+        return inflater.inflate(R.layout.fragment_ingredients, container, false);
     }
 }

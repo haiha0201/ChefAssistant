@@ -40,7 +40,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View foodView = inflater.inflate(R.layout.ingredient_layout, parent, false);
+        View foodView = inflater.inflate(R.layout.ingredient, parent, false);
         ViewHolder viewHolder = new ViewHolder(foodView);
         return viewHolder;
     }
@@ -48,13 +48,13 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Ingredient ingre = ingredients.get(position);
-        try {
-            SetImage(holder.imageView, ingre);
-        }
-        catch (java.io.IOException e)
-        {
-            Log.e("ERROR", e.toString());
-        }
+//        try {
+//            SetImage(holder.imageView, ingre);
+//        }
+//        catch (java.io.IOException e)
+//        {
+//            Log.e("ERROR", e.toString());
+//        }
         holder.name.setText(ingre.name);
         holder.measurement.setText(ingre.measurement);
     }
@@ -96,17 +96,26 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
         }
     }
 
+//    public class ViewHolder extends RecyclerView.ViewHolder
+//    {
+//        public ImageView imageView;
+//        public TextView name;
+//        public TextView measurement;
+//        public ViewHolder(@NonNull View itemView) {
+//            super(itemView);
+//            imageView = itemView.findViewById(R.id.image);
+//            name = itemView.findViewById(R.id.name);
+//            measurement = itemView.findViewById(R.id.measurement);
+//        }
+//    }
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        public ImageView imageView;
         public TextView name;
         public TextView measurement;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.image);
-            name = itemView.findViewById(R.id.name);
-            measurement = itemView.findViewById(R.id.measurement);
+            name = itemView.findViewById(R.id.ingredientTextView);
+            measurement = itemView.findViewById(R.id.unitTextView);
         }
     }
-
 }

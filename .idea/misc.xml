@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.221875" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/drawable/theme.xml" value="0.221875" />
+        <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/font/montserrat.xml" value="0.3015625" />
+        <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/font/montserrat_bold.xml" value="0.2125" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/activity_detail.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/activity_login.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/activity_main.xml" value="0.12" />
@@ -12,6 +14,7 @@
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/activity_tab.xml" value="0.26268115942028986" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/activity_test.xml" value="0.33" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/bottom_nav_menu_detailed_food.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/direction_row.xml" value="0.26902173913043476" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/food_thumbnail.xml" value="0.33" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/food_thumbnail2.xml" value="0.2296875" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/fragment_dashboard.xml" value="0.26268115942028986" />
@@ -21,6 +24,7 @@
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/fragment_notifications.xml" value="0.25677083333333334" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/fragment_personal.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/fragment_scrolling.xml" value="0.2265625" />
+        <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/ingredient.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/ingredient_layout.xml" value="0.5" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/menu.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/Aadmin/Desktop/ChefAssistant/unityLibrary/src/main/res/layout/test_layout.xml" value="0.2265625" />

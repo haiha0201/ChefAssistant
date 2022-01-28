@@ -26,7 +26,7 @@ public class TestActivity extends AppCompatActivity {
         foods = new ArrayList<>();
         for (int i =0; i <20; i++)
         {
-            Helper.GetRandomFood(getApplicationContext(), new Helper.VolleyCallBack()
+            Helper.GetRandomFood(getApplicationContext(), new Helper.GetFoodCallBack()
             {
                 @Override
                 public void onFailure(Exception e) {

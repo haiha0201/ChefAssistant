@@ -21,8 +21,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.HaiHa.ChefAssistant.DetailActivity;
+import com.HaiHa.ChefAssistant.Helper;
 import com.HaiHa.ChefAssistant.models.Food.Food;
 import com.HaiHa.ChefAssistant.models.Food.FoodAdapter;
+import com.google.rpc.Help;
 import com.unity3d.player.R;
 
 import java.util.ArrayList;
@@ -33,16 +35,13 @@ public class HomeFragment extends Fragment implements FoodAdapter.OnItemListener
     private RecyclerView recyclerView;
     private FoodAdapter foodAdapter ;
 
-    private final static int TYPE_NAME = 1;
-    private final static int TYPE_AREA = 2;
-    private final static int TYPE_INGREDIENT = 3;
-    private int typeSearch;
+    private Helper.Type typeSearch;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        typeSearch=1;
+        typeSearch = Helper.Type.TYPE_NAME;
     }
 
     @Override
@@ -68,8 +67,28 @@ public class HomeFragment extends Fragment implements FoodAdapter.OnItemListener
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menuType_Name)
+        {
+            typeSearch = Helper.Type.TYPE_NAME;
+            Toast.makeText(getContext(), "Name Type", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.menuType_Area)
+        {
+            typeSearch= Helper.Type.TYPE_AREA;
+            Toast.makeText(getContext(), "Area Type", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.menuType_Ingredient)
+        {
+            typeSearch= Helper.Type.TYPE_INGREDIENT;
+            Toast.makeText(getContext(), "Ingredient Type", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onItemClick(int position) {
-        Toast.makeText(getContext(), "Get food at", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra("id", foodAdapter.GetAt(position).id);
         startActivity(intent);
@@ -89,41 +108,32 @@ public class HomeFragment extends Fragment implements FoodAdapter.OnItemListener
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String newText) {
-                filter(newText);
+                sendAndFilter(newText);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filter(newText);
+//                sendAndFilter(newText);
                 return false;
             }
         });
 
         super.onCreateOptionsMenu(menu, inflater);
     }
-    private void filter(String newText) {
-        // creating a new array list to filter our data.
+    private void sendAndFilter(String newText) {
+        // creating a new array list to send and filter our data.
         ArrayList<Food> searchedFood = new ArrayList<>();
-//        for (Food item : foods) {
-//            String itemAtri=item.mealName;
-//            if(typeSearch==2)
-//                itemAtri= item.mealArea;
-//            // checking if the entered string matched with any item of our recycler view.
-//            if (itemAtri.toLowerCase().contains(newText.toLowerCase())) {
-//                // if the item is matched we are
-//                // adding it to our filtered list.
-//                searchedFood.add(item);
-//            }
-//        }
-//        if (searchedFood.isEmpty()) {
-//            // if no item is added in filtered list we are
-//            // displaying a toast message as no data found.
-//            Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
-//        } else {
-//            // at last we are passing that filtered
-//            // list to our adapter class.
-//            foodAdapter.filterList(searchedFood);
-//        }
+        Helper.SendAndFilter(getContext(), newText, typeSearch, new Helper.GetFoodsCallBack() {
+            @Override
+            public void onSuccess(ArrayList<Food> foods) {
+                foodAdapter.SetFoods(foods);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Toast.makeText(getContext(), "No data found...", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
