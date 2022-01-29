@@ -31,7 +31,7 @@
 
     <application>
         <activity
-            android:name="com.HaiHa.ChefAssistant.DetailActivity"
+            android:name="com.HaiHa.ChefAssistant.activities.DetailActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <meta-data
@@ -39,12 +39,12 @@
             android:resource="@xml/actions" />
 
         <activity
-            android:name="com.HaiHa.ChefAssistant.MainActivity"
+            android:name="com.HaiHa.ChefAssistant.activities.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.Material3.Light" />
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
-            android:name="com.HaiHa.ChefAssistant.LoginActivity"
+            android:name="com.HaiHa.ChefAssistant.activities.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light">
             <intent-filter>

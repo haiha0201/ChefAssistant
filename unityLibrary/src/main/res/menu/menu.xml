@@ -12,7 +12,7 @@
         android:id="@+id/menuType"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="Share"
-        app:showAsAction="ifRoom|collapseActionView">
+        app:showAsAction="always|collapseActionView">
         <menu>
             <item
                 android:id="@+id/menuType_Name"
@@ -25,9 +25,4 @@
                 android:title="Ingredient" />
         </menu>
     </item>
-
-
-
-
-
 </menu>

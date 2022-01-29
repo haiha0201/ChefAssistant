@@ -27,36 +27,39 @@ public class Food {
     public String mealArea;
     public String mealThumb;
     public String mealInstruction;
+    public String mealYoutubeURL;
     public Bitmap mealThumbBitmap;
     public ArrayList<Ingredient> ingredientList;
     public static int capacity = 20;
-    public Food()
-    {
+
+    public Food() {
 
     }
-    public Food(JSONObject meal, boolean fullForm) throws JSONException
-    {
+
+    public Food(JSONObject meal, boolean fullForm) throws JSONException {
         id = meal.getString("idMeal");
         mealName = meal.getString("strMeal");
         mealThumb = meal.getString("strMealThumb");
         mealThumbBitmap = null;
         ingredientList = new ArrayList<Ingredient>();
-        if (fullForm)
-        {
+        if (fullForm) {
             mealArea = meal.getString("strArea");
+            mealYoutubeURL = meal.getString("strYoutube");
             mealInstruction = meal.getString("strInstructions");
             InitialIngredients(meal);
         }
     }
-    void InitialIngredients(JSONObject meal) throws JSONException
-    {
-        for (int i = 1; i <= capacity; i++)
-        {
-            if (Ingredient.isViable(meal, i))
-            {
+
+    void InitialIngredients(JSONObject meal) throws JSONException {
+        for (int i = 1; i <= capacity; i++) {
+            if (Ingredient.isViable(meal, i)) {
                 ingredientList.add(new Ingredient(meal, i));
             }
         }
 
+    }
+
+    public boolean equals(Food other) {
+        return this.id == other.id;
     }
 }

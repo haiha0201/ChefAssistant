@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 
 public class IngredientsFragment extends Fragment {
-    public FoodViewModel foodViewModel;
+    private FoodViewModel foodViewModel;
     private RecyclerView recyclerView;
     private IngredientAdapter ingredientAdapter ;
 
@@ -48,14 +48,13 @@ public class IngredientsFragment extends Fragment {
             if (food != null) {
                 ingredientAdapter.SetIngredients(food.ingredientList);
                 try {
-                    Helper.SetImage(imageView, food);
-
                     name.setText(food.mealName);
                     area.setText(food.mealArea);
+                    Helper.SetImage(imageView, food);
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(getContext(), "ERROR: Cannot catch image", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "ERROR: Some information cannot be displayed", Toast.LENGTH_SHORT).show();
                 }
             }
         });

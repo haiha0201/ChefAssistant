@@ -1,24 +1,149 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.HaiHa.ChefAssistant.ui.personalInformation.PersonalFragment"
-    android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+    tools:context="com.HaiHa.ChefAssistant.ui.personalInformation.PersonalFragment">
 
     <TextView
-        android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
+        android:id="@+id/usernameLabelTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="noti"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Username"
+        android:textColor="#adb5bd"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameEditText" />
+
+    <TextView
+        android:id="@+id/emailLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Email"
+        android:textColor="#adb5bd"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameEditText" />
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_bold"
+        android:hint="Hai Ha"
+        android:inputType="textPersonName"
+        android:textColor="#000"
+        android:textColorHint="#ced4da"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameLabelTextView" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_bold"
+        android:hint="youremail@email.com"
+        android:inputType="textEmailAddress"
+        android:textColor="#000"
+        android:textColorHint="#ced4da"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailLabelTextView" />
+
+    <TextView
+        android:id="@+id/editProfileLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Edit Profile"
+        android:textColor="#000"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/firstNameLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="70dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="First Name"
+        android:textColor="#adb5bd"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileLabelTextView" />
+
+    <TextView
+        android:id="@+id/lastNameLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="70dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Last Name"
+        android:textColor="#adb5bd"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/firstNameLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileLabelTextView" />
+
+    <EditText
+        android:id="@+id/firstNameEditText"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_bold"
+        android:hint="Adam"
+        android:inputType="textPersonName"
+        android:textColor="#000"
+        android:textColorHint="#ced4da"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameLabelTextView" />
+
+    <EditText
+        android:id="@+id/lastNameEditText"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_bold"
+        android:hint="Thompson"
+        android:inputType="textPersonName"
+        android:textColor="#000"
+        android:textColorHint="#ced4da"
+        app:layout_constraintStart_toEndOf="@+id/firstNameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/lastNameLabelTextView" />
+
+    <Button
+        android:id="@+id/saveProfileButton"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#ff922b"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="SAVE"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

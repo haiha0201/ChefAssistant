@@ -1,4 +1,4 @@
-package com.HaiHa.ChefAssistant;
+package com.HaiHa.ChefAssistant.activities;
 
 import android.content.Intent;
 

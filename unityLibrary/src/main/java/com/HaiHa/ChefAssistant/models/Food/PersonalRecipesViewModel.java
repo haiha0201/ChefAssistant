@@ -18,6 +18,10 @@ public class PersonalRecipesViewModel extends ViewModel {
 
         foods.setValue(oldList);
     }
+    public boolean Contains(Food food)
+    {
+        return foods.getValue().contains(food);
+    }
     public LiveData<ArrayList<Food>> getSelectedItem() {
         return foods;
     }

@@ -1,7 +1,6 @@
 package com.HaiHa.ChefAssistant.ui.detailedRecipe;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.HaiHa.ChefAssistant.Helper;
 import com.HaiHa.ChefAssistant.models.Food.FoodViewModel;
 import com.HaiHa.ChefAssistant.models.Ingredient.DirectionRecylerViewAdapter;
-import com.HaiHa.ChefAssistant.models.Ingredient.Ingredient;
-import com.HaiHa.ChefAssistant.models.Ingredient.IngredientAdapter;
 import com.unity3d.player.R;
 
 public class InstructionFragment extends Fragment {
@@ -54,14 +51,13 @@ public class InstructionFragment extends Fragment {
                 directionRecylerViewAdapter.SetDirections(food.mealInstruction);
 
                 try {
-                    Helper.SetImage(imageView, food);
-
                     name.setText(food.mealName);
                     area.setText(food.mealArea);
+                    Helper.SetImage(imageView, food);
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(getContext(), "ERROR: Cannot catch image", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "ERROR: Some information cannot be displayed", Toast.LENGTH_SHORT).show();
                 }
             }
         });

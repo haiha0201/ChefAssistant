@@ -47,9 +47,9 @@ public class Helper {
     static String randomURL = "https://www.themealdb.com/api/json/v1/1/random.php";
     static String searchURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
     static String searchByID = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
-
     static String searchByArea = "https://www.themealdb.com/api/json/v1/1/filter.php?a=";
     static String searchByIngrdients = "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
+
     public static void GetRandomFood(Context context, GetFoodCallBack callback)
     {
         RequestQueue queue = Volley.newRequestQueue(context);

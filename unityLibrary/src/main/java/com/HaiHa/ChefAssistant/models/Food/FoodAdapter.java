@@ -1,8 +1,6 @@
 package com.HaiHa.ChefAssistant.models.Food;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.HaiHa.ChefAssistant.Helper;
 import com.unity3d.player.R;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import android.os.Handler;
+
 import android.widget.Toast;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
@@ -39,6 +34,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     {
         foods = newFoods;
         notifyDataSetChanged();
+    }
+    public ArrayList<Food> GetFoods()
+    {
+        return foods;
     }
     public Food GetAt(int i)
     {
@@ -77,7 +76,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             Log.e("ERROR", e.toString());
         }
         holder.name.setText(food.mealName);
-
+        holder.id.setText("#" + food.id);
     }
 
     @Override
@@ -92,11 +91,14 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     {
         public ImageView imageView;
         public TextView name;
+        public TextView id;
         OnItemListener onItemListener;
         public ViewHolder(@NonNull View itemView, OnItemListener onItemListener) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.image);
-            name = itemView.findViewById(R.id.name);
+            imageView = itemView.findViewById(R.id.mealImageView);
+            name = itemView.findViewById(R.id.mealNameTextView);
+            id = itemView.findViewById(R.id.mealIdTextView);
+
             this.onItemListener=onItemListener;
             itemView.setOnClickListener(this);
         }

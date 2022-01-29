@@ -1,43 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/foodRowConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_margin="10dp"
+    android:background="@drawable/back">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width    =   "0dp"
-        android:layout_height   =   "wrap_content"
-        android:layout_weight   =   ".3"
-        android:padding="10dp">
+    <ImageView
+        android:id="@+id/mealImageView"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="25dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/btn_star" />
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+    <TextView
+        android:id="@+id/mealNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Name"
+        android:textColor="#ff922b"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mealImageView"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width    = "0dp"
-        android:layout_height   =  "wrap_content"
-        android:layout_weight   = ".7"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width=   "match_parent"
-            android:layout_height=  "wrap_content"
-            android:text="name"
-            :gravity="center_vertical|left"
-            android:textSize="40sp"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.appcompat.widget.LinearLayoutCompat>
+    <TextView
+        android:id="@+id/mealIdTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="#id"
+        android:textColor="#ffc078"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mealImageView"
+        app:layout_constraintTop_toBottomOf="@+id/mealNameTextView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

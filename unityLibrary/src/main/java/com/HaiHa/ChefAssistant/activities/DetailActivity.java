@@ -1,4 +1,4 @@
-package com.HaiHa.ChefAssistant;
+package com.HaiHa.ChefAssistant.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,9 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.HaiHa.ChefAssistant.Helper;
 import com.HaiHa.ChefAssistant.models.Food.Food;
 import com.HaiHa.ChefAssistant.models.Food.FoodViewModel;
 import com.HaiHa.ChefAssistant.models.Reference.Reference;
+import com.HaiHa.ChefAssistant.ui.detailedRecipe.ExtensionFragment;
 import com.HaiHa.ChefAssistant.ui.detailedRecipe.IngredientsFragment;
 import com.HaiHa.ChefAssistant.ui.detailedRecipe.InstructionFragment;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -52,7 +54,7 @@ public class DetailActivity extends AppCompatActivity {
     {
         Fragment ingre = new IngredientsFragment();
         Fragment instruct = new InstructionFragment();
-        Fragment none = new InstructionFragment();
+        Fragment extension = new ExtensionFragment();
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -70,7 +72,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
                 else if (id == R.id.navigation_unity)
                 {
-                    fragment = ingre;
+                    fragment = extension;
                 }
                 if (fragment != null) {
                     FragmentManager manager = getSupportFragmentManager();
